@@ -10,7 +10,6 @@ const messageFrame = document.getElementById('message-frame');
 const requestIdInput = document.getElementById('request-id');
 
 window.alert('this website is exclusively for lena only');
-
 function backendIsConfigured() {
   return BACKEND_URL.startsWith('https://script.google.com/macros/s/') && BACKEND_URL.endsWith('/exec');
 }
