@@ -9,7 +9,7 @@ const statusElement = document.getElementById('form-status');
 const messageFrame = document.getElementById('message-frame');
 const requestIdInput = document.getElementById('request-id');
 
-window.alert('this website is for lena only');
+window.alert('this website is exclusively for lena only');
 
 function backendIsConfigured() {
   return BACKEND_URL.startsWith('https://script.google.com/macros/s/') && BACKEND_URL.endsWith('/exec');
@@ -21,8 +21,8 @@ function loadOwnerNote() {
     return;
   }
 
-  const callbackName = 'receiveForLinaNote';
-  const oldScript = document.getElementById('for-lina-note-script');
+  const callbackName = 'receiveForLenaNote';
+  const oldScript = document.getElementById('for-lena-note-script');
   if (oldScript) oldScript.remove();
 
   window[callbackName] = function (data) {
@@ -33,7 +33,7 @@ function loadOwnerNote() {
   };
 
   const script = document.createElement('script');
-  script.id = 'for-lina-note-script';
+  script.id = 'for-lena-note-script';
   script.src = BACKEND_URL + '?callback=' + callbackName + '&t=' + Date.now();
   script.onerror = function () {
     noteElement.textContent = 'The message could not be loaded right now.';
@@ -75,7 +75,7 @@ form.addEventListener('submit', function (event) {
 window.addEventListener('message', function (event) {
   if (event.source !== messageFrame.contentWindow) return;
   const data = event.data;
-  if (!data || data.type !== 'FOR_LINA_RESULT') return;
+  if (!data || data.type !== 'FOR_LENA_RESULT') return;
   if (data.requestId !== requestIdInput.value) return;
 
   sendButton.disabled = false;
